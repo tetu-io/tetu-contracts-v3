@@ -10,10 +10,11 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup node
         uses: actions/setup-node@v3
-      - run: npm ci
-      - run: npm run test
-        env:
-          FORCE_COLOR: 1
-          ENABLE_GAS_REPORT: true
-      - name: Print gas report
-        run: cat gas-report.txt
+      - name: Run install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install # will run `yarn install` command
+      - name: Run tests
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: test # will run `yarn test` command
